@@ -1,0 +1,992 @@
+[
+  {
+    "pr_id": "PR-2024-0001",
+    "submitted_by": "rajesh.kumar@acme.com",
+    "submission_date": "2024-10-01",
+    "vendor": "OfficeDepot India",
+    "total_amount": 320.00,
+    "currency": "USD",
+    "quantity": 10,
+    "description": "Standard office stationery pack for Q4 team setup",
+    "commodity_code": "OFFICE-SUPPLY",
+    "short_name": "Q4 Stationery Pack",
+    "item_details": [
+      {"description": "Notebook and pen sets x10", "amount": 320.00}
+    ],
+    "attachments": [
+      {
+        "filename": "officedepot_quote.pdf",
+        "file_type": "quote",
+        "simulated_content": "OfficeDepot India - Stationery pack quote. 10 units notebook and pen set. No entertainment or hospitality component."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 10,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "IN"
+    },
+    "risk_label": "COMPLIANT",
+    "ground_truth_category": "other",
+    "ground_truth_reason": "Standard office supplies, no hospitality or incentive component present"
+  },
+  {
+    "pr_id": "PR-2024-0002",
+    "submitted_by": "priya.sharma@acme.com",
+    "submission_date": "2024-10-03",
+    "vendor": "Microsoft Azure",
+    "total_amount": 4500.00,
+    "currency": "USD",
+    "quantity": 1,
+    "description": "Annual software license renewal - Azure DevOps Enterprise",
+    "commodity_code": "SW-LICENSE",
+    "short_name": "Azure DevOps License",
+    "item_details": [
+      {"description": "Azure DevOps Enterprise annual subscription", "amount": 4500.00}
+    ],
+    "attachments": [
+      {
+        "filename": "microsoft_invoice.pdf",
+        "file_type": "invoice",
+        "simulated_content": "Microsoft Corporation - Azure DevOps Enterprise. Annual subscription renewal. Software license only. No gifts, meals, or entertainment."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 0,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "US"
+    },
+    "risk_label": "COMPLIANT",
+    "ground_truth_category": "other",
+    "ground_truth_reason": "Software license renewal, no incentive or hospitality component"
+  },
+  {
+    "pr_id": "PR-2024-0003",
+    "submitted_by": "anita.patel@acme.com",
+    "submission_date": "2024-10-05",
+    "vendor": "Coursera for Business",
+    "total_amount": 1200.00,
+    "currency": "USD",
+    "quantity": 4,
+    "description": "Data science certification course for 4 engineers - approved training budget",
+    "commodity_code": "TRAINING",
+    "short_name": "DS Certification Training",
+    "item_details": [
+      {"description": "Coursera Data Science Professional Certificate x4", "amount": 1200.00}
+    ],
+    "attachments": [
+      {
+        "filename": "coursera_quote.pdf",
+        "file_type": "quote",
+        "simulated_content": "Coursera for Business - Data Science Professional Certificate. 4 seats. Training and education only. Approved vendor."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 4,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "US"
+    },
+    "risk_label": "COMPLIANT",
+    "ground_truth_category": "other",
+    "ground_truth_reason": "Approved training expenditure within policy, no hospitality component"
+  },
+  {
+    "pr_id": "PR-2024-0004",
+    "submitted_by": "david.chen@acme.com",
+    "submission_date": "2024-10-07",
+    "vendor": "Ergotron",
+    "total_amount": 850.00,
+    "currency": "USD",
+    "quantity": 5,
+    "description": "Ergonomic monitor stands for home office setup - 5 employees",
+    "commodity_code": "IT-HARDWARE",
+    "short_name": "Ergonomic Monitor Stands",
+    "item_details": [
+      {"description": "Ergotron monitor arm x5", "amount": 850.00}
+    ],
+    "attachments": [
+      {
+        "filename": "ergotron_quote.pdf",
+        "file_type": "quote",
+        "simulated_content": "Ergotron Inc - LX Monitor Arm x5 units. Standard IT hardware procurement. No entertainment component."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 5,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "US"
+    },
+    "risk_label": "COMPLIANT",
+    "ground_truth_category": "other",
+    "ground_truth_reason": "IT hardware procurement, within policy, no hospitality component"
+  },
+  {
+    "pr_id": "PR-2024-0005",
+    "submitted_by": "sara.jones@acme.com",
+    "submission_date": "2024-10-10",
+    "vendor": "The Westin Hotel",
+    "total_amount": 600.00,
+    "currency": "USD",
+    "quantity": 8,
+    "description": "Team lunch during internal Q3 review meeting - 8 employees only",
+    "commodity_code": "MEALS-ENT",
+    "short_name": "Q3 Review Team Lunch",
+    "item_details": [
+      {"description": "Set lunch menu x8 employees", "amount": 600.00}
+    ],
+    "attachments": [
+      {
+        "filename": "westin_quote.pdf",
+        "file_type": "quote",
+        "simulated_content": "The Westin Hotel - Business lunch arrangement. 8 covers. Internal team meeting. No external guests. Per head cost USD 75."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 8,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "US"
+    },
+    "risk_label": "COMPLIANT",
+    "ground_truth_category": "meals",
+    "ground_truth_reason": "Internal team meal at exactly $75/head, meets policy threshold"
+  },
+  {
+    "pr_id": "PR-2024-0006",
+    "submitted_by": "tom.wright@acme.com",
+    "submission_date": "2024-10-12",
+    "vendor": "Amazon Business",
+    "total_amount": 240.00,
+    "currency": "USD",
+    "quantity": 3,
+    "description": "Welcome gift hampers for new hires - 3 employees joining this month",
+    "commodity_code": "GIFTS-EMP",
+    "short_name": "New Hire Welcome Hampers",
+    "item_details": [
+      {"description": "Welcome gift hamper x3", "amount": 240.00}
+    ],
+    "attachments": [
+      {
+        "filename": "amazon_order.pdf",
+        "file_type": "invoice",
+        "simulated_content": "Amazon Business - Welcome gift hampers x3. Contents: branded notebook, mug, snacks. Unit cost USD 80. Employee onboarding category."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 3,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "US"
+    },
+    "risk_label": "COMPLIANT",
+    "ground_truth_category": "gifts",
+    "ground_truth_reason": "Employee gift at $80/head, below $150 single gift threshold"
+  },
+  {
+    "pr_id": "PR-2024-0007",
+    "submitted_by": "linda.park@acme.com",
+    "submission_date": "2024-10-15",
+    "vendor": "Zoom Video Communications",
+    "total_amount": 2100.00,
+    "currency": "USD",
+    "quantity": 30,
+    "description": "Zoom Workplace Pro annual licenses for engineering team",
+    "commodity_code": "SW-LICENSE",
+    "short_name": "Zoom Enterprise Licenses",
+    "item_details": [
+      {"description": "Zoom Workplace Pro x30 seats annual", "amount": 2100.00}
+    ],
+    "attachments": [
+      {
+        "filename": "zoom_invoice.pdf",
+        "file_type": "invoice",
+        "simulated_content": "Zoom Video Communications - Workplace Pro 30-seat annual license. Software subscription renewal. No entertainment."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 0,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "US"
+    },
+    "risk_label": "COMPLIANT",
+    "ground_truth_category": "other",
+    "ground_truth_reason": "Standard software license, no incentive component"
+  },
+  {
+    "pr_id": "PR-2024-0008",
+    "submitted_by": "carlos.mendez@acme.com",
+    "submission_date": "2024-10-18",
+    "vendor": "FedEx",
+    "total_amount": 180.00,
+    "currency": "USD",
+    "quantity": 1,
+    "description": "Express courier for urgent contract document delivery to Singapore office",
+    "commodity_code": "LOGISTICS",
+    "short_name": "Urgent Courier Singapore",
+    "item_details": [
+      {"description": "International express courier - contract documents", "amount": 180.00}
+    ],
+    "attachments": [
+      {
+        "filename": "fedex_receipt.pdf",
+        "file_type": "invoice",
+        "simulated_content": "FedEx International Priority. Document shipment. Singapore delivery. No gifts or entertainment."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 0,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "SG"
+    },
+    "risk_label": "COMPLIANT",
+    "ground_truth_category": "other",
+    "ground_truth_reason": "Logistics and courier, no incentive component"
+  },
+  {
+    "pr_id": "PR-2024-0009",
+    "submitted_by": "nina.walsh@acme.com",
+    "submission_date": "2024-10-20",
+    "vendor": "Starbucks Corporate Catering",
+    "total_amount": 280.00,
+    "currency": "USD",
+    "quantity": 4,
+    "description": "Coffee and pastries for internal strategy workshop - 4 team members",
+    "commodity_code": "MEALS-ENT",
+    "short_name": "Workshop Catering",
+    "item_details": [
+      {"description": "Coffee and pastry catering for workshop x4", "amount": 280.00}
+    ],
+    "attachments": [
+      {
+        "filename": "starbucks_quote.pdf",
+        "file_type": "quote",
+        "simulated_content": "Starbucks Corporate Catering - Workshop package for 4. Coffee, tea, pastries. Internal meeting only. No external guests."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 4,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "US"
+    },
+    "risk_label": "COMPLIANT",
+    "ground_truth_category": "meals",
+    "ground_truth_reason": "Internal workshop catering at $70/head, below $75 internal threshold"
+  },
+  {
+    "pr_id": "PR-2024-0010",
+    "submitted_by": "john.lee@acme.com",
+    "submission_date": "2024-10-22",
+    "vendor": "Hilton Hotels",
+    "total_amount": 750.00,
+    "currency": "USD",
+    "quantity": 1,
+    "description": "Conference room booking for partner training day - full day hire",
+    "commodity_code": "FACILITIES",
+    "short_name": "Partner Training Room",
+    "item_details": [
+      {"description": "Conference room full day hire", "amount": 750.00}
+    ],
+    "attachments": [
+      {
+        "filename": "hilton_booking.pdf",
+        "file_type": "invoice",
+        "simulated_content": "Hilton Hotels - Conference room hire. Full day. No meal packages included. Venue hire only."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 0,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "US"
+    },
+    "risk_label": "COMPLIANT",
+    "ground_truth_category": "other",
+    "ground_truth_reason": "Venue hire only, no hospitality or incentive component"
+  },
+  {
+    "pr_id": "PR-2024-0011",
+    "submitted_by": "amy.chen@acme.com",
+    "submission_date": "2024-10-25",
+    "vendor": "Swiggy for Business",
+    "total_amount": 900.00,
+    "currency": "USD",
+    "quantity": 12,
+    "description": "Working lunch for annual performance review committee - 12 employees",
+    "commodity_code": "MEALS-ENT",
+    "short_name": "Performance Review Committee Lunch",
+    "item_details": [
+      {"description": "Business lunch x12 internal employees", "amount": 900.00}
+    ],
+    "attachments": [
+      {
+        "filename": "swiggy_order.pdf",
+        "file_type": "invoice",
+        "simulated_content": "Swiggy for Business - Catered lunch 12 covers. All internal employees. Performance review committee. Per head USD 75."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 12,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "IN"
+    },
+    "risk_label": "COMPLIANT",
+    "ground_truth_category": "meals",
+    "ground_truth_reason": "Internal committee lunch at $75/head, meets policy ceiling exactly"
+  },
+  {
+    "pr_id": "PR-2024-0012",
+    "submitted_by": "marcus.bell@acme.com",
+    "submission_date": "2024-10-28",
+    "vendor": "Dell Technologies",
+    "total_amount": 3200.00,
+    "currency": "USD",
+    "quantity": 4,
+    "description": "Replacement laptops for outgoing engineers - standard IT refresh cycle",
+    "commodity_code": "IT-HARDWARE",
+    "short_name": "Laptop IT Refresh",
+    "item_details": [
+      {"description": "Dell Latitude 7450 x4 units", "amount": 3200.00}
+    ],
+    "attachments": [
+      {
+        "filename": "dell_quote.pdf",
+        "file_type": "quote",
+        "simulated_content": "Dell Technologies - Latitude 7450 business laptop x4. Standard IT hardware. No entertainment or hospitality."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 4,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "US"
+    },
+    "risk_label": "COMPLIANT",
+    "ground_truth_category": "other",
+    "ground_truth_reason": "Standard IT hardware refresh, no compliance concerns"
+  },
+  {
+    "pr_id": "PR-2024-0013",
+    "submitted_by": "helen.morris@acme.com",
+    "submission_date": "2024-11-01",
+    "vendor": "The Leela Palace",
+    "total_amount": 2400.00,
+    "currency": "USD",
+    "quantity": 16,
+    "description": "Team appreciation dinner for Q3 project close - 16 employees, no external guests",
+    "commodity_code": "MEALS-ENT",
+    "short_name": "Q3 Project Close Dinner",
+    "item_details": [
+      {"description": "3-course dinner x16 team members", "amount": 2400.00}
+    ],
+    "attachments": [
+      {
+        "filename": "leela_quote.pdf",
+        "file_type": "quote",
+        "simulated_content": "The Leela Palace - Team dinner arrangement. 16 covers. Internal employees only. Per head cost USD 150. Project celebration."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 16,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "IN"
+    },
+    "risk_label": "REVIEW_NEEDED",
+    "ground_truth_category": "meals",
+    "ground_truth_reason": "Meal at $150/head for internal-only exceeds $75 internal limit; requires prior approval as total exceeds $500"
+  },
+  {
+    "pr_id": "PR-2024-0014",
+    "submitted_by": "felix.nguyen@acme.com",
+    "submission_date": "2024-11-03",
+    "vendor": "Amazon Gift Cards",
+    "total_amount": 600.00,
+    "currency": "USD",
+    "quantity": 4,
+    "description": "Employee recognition gift cards for Q3 top performers - 4 employees",
+    "commodity_code": "GIFT-CARDS",
+    "short_name": "Q3 Recognition Gift Cards",
+    "item_details": [
+      {"description": "Amazon gift card $150 x4 employees", "amount": 600.00}
+    ],
+    "attachments": [
+      {
+        "filename": "amazon_giftcard_order.pdf",
+        "file_type": "invoice",
+        "simulated_content": "Amazon.com Gift Cards. Corporate order. 4 x USD 150 denominations. Employee recognition program."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 4,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "US"
+    },
+    "risk_label": "REVIEW_NEEDED",
+    "ground_truth_category": "gift_cards",
+    "ground_truth_reason": "Gift cards at exactly $150/unit hit the single gift threshold ceiling; requires manager approval and documentation"
+  },
+  {
+    "pr_id": "PR-2024-0015",
+    "submitted_by": "sarah.kim@acme.com",
+    "submission_date": "2024-11-05",
+    "vendor": "Taj Hotels",
+    "total_amount": 1800.00,
+    "currency": "USD",
+    "quantity": 12,
+    "description": "Client appreciation lunch - 6 employees, 6 private sector clients",
+    "commodity_code": "MEALS-ENT",
+    "short_name": "Client Appreciation Lunch",
+    "item_details": [
+      {"description": "Business lunch x12 covers - 6 internal, 6 client", "amount": 1800.00}
+    ],
+    "attachments": [
+      {
+        "filename": "taj_quote.pdf",
+        "file_type": "quote",
+        "simulated_content": "Taj Hotels Catering - Business lunch 12 covers. 6 internal employees and 6 external private sector clients. Per head USD 150."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": true,
+      "includes_public_sector": false,
+      "employee_count": 6,
+      "external_count": 6,
+      "known_public_officials": false,
+      "country_code": "IN"
+    },
+    "risk_label": "REVIEW_NEEDED",
+    "ground_truth_category": "meals",
+    "ground_truth_reason": "External guests present, $150/head meets external threshold exactly; total exceeds $500 requiring prior approval documentation"
+  },
+  {
+    "pr_id": "PR-2024-0016",
+    "submitted_by": "peter.grant@acme.com",
+    "submission_date": "2024-11-07",
+    "vendor": "Decathlon",
+    "total_amount": 750.00,
+    "currency": "USD",
+    "quantity": 5,
+    "description": "Sports equipment gifts for key account managers - annual reward",
+    "commodity_code": "GIFTS-EMP",
+    "short_name": "KAM Annual Gift - Sports Kit",
+    "item_details": [
+      {"description": "Sports equipment gift pack x5 employees", "amount": 750.00}
+    ],
+    "attachments": [
+      {
+        "filename": "decathlon_quote.pdf",
+        "file_type": "quote",
+        "simulated_content": "Decathlon Corporate Gifting - Sports equipment bundle. 5 packs at USD 150 each. Annual employee reward scheme."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 5,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "US"
+    },
+    "risk_label": "REVIEW_NEEDED",
+    "ground_truth_category": "gifts",
+    "ground_truth_reason": "Gift at $150/head hits single threshold ceiling; annual cumulative tracking required against $500 annual per-recipient cap"
+  },
+  {
+    "pr_id": "PR-2024-0017",
+    "submitted_by": "diana.ross@acme.com",
+    "submission_date": "2024-11-10",
+    "vendor": "BookMyShow Corporate",
+    "total_amount": 400.00,
+    "currency": "USD",
+    "quantity": 8,
+    "description": "Event tickets for team - IPL match hospitality for 8 employees",
+    "commodity_code": "SPONSORSHIP",
+    "short_name": "IPL Match Team Outing",
+    "item_details": [
+      {"description": "IPL match tickets x8 employees hospitality box", "amount": 400.00}
+    ],
+    "attachments": [
+      {
+        "filename": "bookmyshow_booking.pdf",
+        "file_type": "invoice",
+        "simulated_content": "BookMyShow Corporate - IPL match hospitality. 8 seats hospitality box. Internal employees only. Entertainment event."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 8,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "IN"
+    },
+    "risk_label": "REVIEW_NEEDED",
+    "ground_truth_category": "sponsorship",
+    "ground_truth_reason": "Entertainment event tickets constitute hospitality; requires documentation and approval as total exceeds $500 threshold"
+  },
+  {
+    "pr_id": "PR-2024-0018",
+    "submitted_by": "kevin.omalley@acme.com",
+    "submission_date": "2024-11-12",
+    "vendor": "Tanishq Corporate Gifts",
+    "total_amount": 1050.00,
+    "currency": "USD",
+    "quantity": 7,
+    "description": "Diwali gift hampers for top enterprise customers - 7 private sector accounts",
+    "commodity_code": "GIFTS-CUST",
+    "short_name": "Diwali Customer Gift Hampers",
+    "item_details": [
+      {"description": "Premium Diwali hamper x7 customers", "amount": 1050.00}
+    ],
+    "attachments": [
+      {
+        "filename": "tanishq_quote.pdf",
+        "file_type": "quote",
+        "simulated_content": "Tanishq Corporate - Premium Diwali gift hamper. 7 units for enterprise customers. Contains sweets, dry fruits, branded items. Per unit USD 150."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": true,
+      "includes_public_sector": false,
+      "employee_count": 0,
+      "external_count": 7,
+      "known_public_officials": false,
+      "country_code": "IN"
+    },
+    "risk_label": "REVIEW_NEEDED",
+    "ground_truth_category": "gifts",
+    "ground_truth_reason": "External customer gifts at $150/unit at threshold ceiling; annual cumulative tracking required, approval documentation needed"
+  },
+  {
+    "pr_id": "PR-2024-0019",
+    "submitted_by": "michelle.zhang@acme.com",
+    "submission_date": "2024-11-14",
+    "vendor": "GourmetEvents Co",
+    "total_amount": 3200.00,
+    "currency": "USD",
+    "quantity": 18,
+    "description": "Q3 business review dinner - 8 employees and 10 external enterprise clients",
+    "commodity_code": "MEALS-ENT",
+    "short_name": "Q3 Business Review Dinner",
+    "item_details": [
+      {"description": "Executive dinner x18 covers mixed internal and external", "amount": 3200.00}
+    ],
+    "attachments": [
+      {
+        "filename": "gourmet_events_quote.pdf",
+        "file_type": "quote",
+        "simulated_content": "GourmetEvents Co - Executive dinner package. 18 covers. 8 internal staff, 10 external enterprise clients (private sector). Per head approximately USD 177. Premium venue."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": true,
+      "includes_public_sector": false,
+      "employee_count": 8,
+      "external_count": 10,
+      "known_public_officials": false,
+      "country_code": "US"
+    },
+    "risk_label": "REVIEW_NEEDED",
+    "ground_truth_category": "meals",
+    "ground_truth_reason": "Per head cost $177 exceeds $150 external guest threshold; prior approval required, total significantly above $500 limit"
+  },
+  {
+    "pr_id": "PR-2024-0020",
+    "submitted_by": "alex.turner@acme.com",
+    "submission_date": "2024-11-18",
+    "vendor": "TechSummit India Pvt Ltd",
+    "total_amount": 8500.00,
+    "currency": "USD",
+    "quantity": 1,
+    "description": "Platinum sponsorship of TechSummit India 2025 - brand visibility package",
+    "commodity_code": "SPONSORSHIP",
+    "short_name": "TechSummit India Sponsorship",
+    "item_details": [
+      {"description": "Platinum sponsorship package - TechSummit India 2025", "amount": 8500.00}
+    ],
+    "attachments": [
+      {
+        "filename": "techsummit_sponsorship_proposal.pdf",
+        "file_type": "quote",
+        "simulated_content": "TechSummit India 2025 - Platinum Sponsorship Package. USD 8,500. Includes: logo placement, 2 speaking slots, 5 delegate passes, booth space. Event date: March 2025."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 0,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "IN"
+    },
+    "risk_label": "REVIEW_NEEDED",
+    "ground_truth_category": "sponsorship",
+    "ground_truth_reason": "Sponsorship exceeds $5K GSMM registration threshold; requires GSMM registration before approval. Amount between $5K-$25K needs manager approval."
+  },
+  {
+    "pr_id": "PR-2024-0021",
+    "submitted_by": "rachel.ford@acme.com",
+    "submission_date": "2024-11-20",
+    "vendor": "The Oberoi",
+    "total_amount": 4500.00,
+    "currency": "USD",
+    "quantity": 20,
+    "description": "Annual partner summit dinner - 8 employees, 12 partner representatives (mix of private and public sector)",
+    "commodity_code": "MEALS-ENT",
+    "short_name": "Partner Summit Dinner",
+    "item_details": [
+      {"description": "Gala dinner x20 covers - mixed employee and partner", "amount": 4500.00}
+    ],
+    "attachments": [
+      {
+        "filename": "oberoi_gala_quote.pdf",
+        "file_type": "quote",
+        "simulated_content": "The Oberoi - Annual Gala Dinner. 20 covers. 8 employees and 12 partner representatives. 3 confirmed public sector agency contacts among partners. Per head USD 225."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": true,
+      "includes_public_sector": true,
+      "employee_count": 8,
+      "external_count": 12,
+      "known_public_officials": false,
+      "country_code": "IN"
+    },
+    "risk_label": "REVIEW_NEEDED",
+    "ground_truth_category": "meals",
+    "ground_truth_reason": "Public sector guests present; per head $225 exceeds both external ($150) and public sector thresholds; requires legal review and VP approval"
+  },
+  {
+    "pr_id": "PR-2024-0022",
+    "submitted_by": "brandon.cole@acme.com",
+    "submission_date": "2024-11-22",
+    "vendor": "DataFest Organizers",
+    "total_amount": 32000.00,
+    "currency": "USD",
+    "quantity": 1,
+    "description": "Gold tier sponsorship of DataFest 2025 conference - includes branded lounge and keynote slot",
+    "commodity_code": "SPONSORSHIP",
+    "short_name": "DataFest 2025 Sponsorship",
+    "item_details": [
+      {"description": "Gold sponsorship - DataFest 2025", "amount": 32000.00}
+    ],
+    "attachments": [
+      {
+        "filename": "datafest_sponsorship_deck.pdf",
+        "file_type": "quote",
+        "simulated_content": "DataFest 2025 - Gold Tier Sponsorship. USD 32,000. Branded lounge, keynote speaking slot, 10 delegate passes, social media promotion. Expected 5000 attendees including government representatives."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": true,
+      "employee_count": 0,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "US"
+    },
+    "risk_label": "REVIEW_NEEDED",
+    "ground_truth_category": "sponsorship",
+    "ground_truth_reason": "Sponsorship >$25K requires VP approval; GSMM registration mandatory; public sector attendees noted requiring additional scrutiny"
+  },
+  {
+    "pr_id": "PR-2024-0023",
+    "submitted_by": "natalie.cross@acme.com",
+    "submission_date": "2024-11-25",
+    "vendor": "Flipkart Gift Cards",
+    "total_amount": 1500.00,
+    "currency": "USD",
+    "quantity": 10,
+    "description": "Customer appreciation gift cards for renewal milestone - 10 enterprise accounts",
+    "commodity_code": "GIFT-CARDS",
+    "short_name": "Renewal Milestone Gift Cards",
+    "item_details": [
+      {"description": "Flipkart gift card $150 x10 customers", "amount": 1500.00}
+    ],
+    "attachments": [
+      {
+        "filename": "flipkart_giftcard_order.pdf",
+        "file_type": "invoice",
+        "simulated_content": "Flipkart Gift Cards Corporate. 10 x INR equivalent USD 150 gift cards. Enterprise customer renewal milestone reward. Mix of private and government accounts."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": true,
+      "includes_public_sector": true,
+      "employee_count": 0,
+      "external_count": 10,
+      "known_public_officials": false,
+      "country_code": "IN"
+    },
+    "risk_label": "REVIEW_NEEDED",
+    "ground_truth_category": "gift_cards",
+    "ground_truth_reason": "Gift cards to public sector customers are restricted; mix of private and government accounts requires recipient-level review before any disbursement"
+  },
+  {
+    "pr_id": "PR-2024-0024",
+    "submitted_by": "oliver.shaw@acme.com",
+    "submission_date": "2024-11-28",
+    "vendor": "GlobalEvents & Hospitality",
+    "total_amount": 12000.00,
+    "currency": "USD",
+    "quantity": 25,
+    "description": "Annual customer appreciation gala - 10 employees, 15 customers including 4 government ministry officials",
+    "commodity_code": "MEALS-ENT",
+    "short_name": "Customer Appreciation Gala",
+    "item_details": [
+      {"description": "Black tie gala dinner and entertainment x25 covers", "amount": 12000.00}
+    ],
+    "attachments": [
+      {
+        "filename": "globalevents_proposal.pdf",
+        "file_type": "quote",
+        "simulated_content": "GlobalEvents and Hospitality - Annual Gala. 25 covers. 10 employees, 15 guests including 4 confirmed government ministry officials. Per head USD 480. Includes dinner, entertainment, branded gifts. Country: KR."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": true,
+      "includes_public_sector": true,
+      "employee_count": 10,
+      "external_count": 15,
+      "known_public_officials": true,
+      "country_code": "KR"
+    },
+    "risk_label": "REVIEW_NEEDED",
+    "ground_truth_category": "meals",
+    "ground_truth_reason": "Known public officials from government ministry attending; KR Level2 threshold applies ($50/head hard cap); per head $480 massively exceeds cap; mandatory legal review and SVP approval required"
+  },
+  {
+    "pr_id": "PR-2024-0025",
+    "submitted_by": "victor.hayes@acme.com",
+    "submission_date": "2024-12-01",
+    "vendor": "SportsBiz Events",
+    "total_amount": 18000.00,
+    "currency": "USD",
+    "quantity": 20,
+    "description": "Corporate box for Formula 1 race - 20 guests including 6 public sector IT ministry contacts",
+    "commodity_code": "SPONSORSHIP",
+    "short_name": "F1 Corporate Hospitality Box",
+    "item_details": [
+      {"description": "F1 Grand Prix corporate hospitality box - 20 guests", "amount": 18000.00}
+    ],
+    "attachments": [
+      {
+        "filename": "sportsbiz_f1_proposal.pdf",
+        "file_type": "quote",
+        "simulated_content": "SportsBiz Events - F1 Grand Prix Corporate Box. 20 guests. Confirmed attendees include 6 IT Ministry officials (public sector Level1). Per head USD 900. Full day hospitality package including meals, beverages, branded merchandise."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": true,
+      "includes_public_sector": true,
+      "employee_count": 7,
+      "external_count": 13,
+      "known_public_officials": true,
+      "country_code": "US"
+    },
+    "risk_label": "REVIEW_NEEDED",
+    "ground_truth_category": "sponsorship",
+    "ground_truth_reason": "Public officials attending corporate hospitality; per head $900 exceeds US Level1 threshold; GSMM registration mandatory; SVP approval required; bundled meals and gifts in package require decomposition"
+  },
+  {
+    "pr_id": "PR-2024-0026",
+    "submitted_by": "irene.fox@acme.com",
+    "submission_date": "2024-12-03",
+    "vendor": "Luxury Gifts International",
+    "total_amount": 2800.00,
+    "currency": "USD",
+    "quantity": 4,
+    "description": "Executive year-end gifts for 4 key government procurement officials - premium branded watches",
+    "commodity_code": "GIFTS-GOVT",
+    "short_name": "Government Official Year-End Gifts",
+    "item_details": [
+      {"description": "Premium branded watch x4 government procurement officials", "amount": 2800.00}
+    ],
+    "attachments": [
+      {
+        "filename": "luxury_gifts_quote.pdf",
+        "file_type": "quote",
+        "simulated_content": "Luxury Gifts International - Premium branded timepiece. 4 units at USD 700 each. Intended recipients: 4 government procurement officials handling our upcoming contract renewal."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": true,
+      "employee_count": 0,
+      "external_count": 4,
+      "known_public_officials": true,
+      "country_code": "US"
+    },
+    "risk_label": "NON_COMPLIANT",
+    "ground_truth_category": "gifts",
+    "ground_truth_reason": "Gifts to government procurement officials directly involved in contract award are prohibited; $700/unit massively exceeds all thresholds; potential anti-bribery violation (FCPA/local equivalent); immediate escalation required"
+  },
+  {
+    "pr_id": "PR-2024-0027",
+    "submitted_by": "thomas.black@acme.com",
+    "submission_date": "2024-12-05",
+    "vendor": "PrepaidCardHub",
+    "total_amount": 5000.00,
+    "currency": "USD",
+    "quantity": 50,
+    "description": "Prepaid Visa gift cards for public sector event attendees - government IT conference giveaway",
+    "commodity_code": "GIFT-CARDS",
+    "short_name": "Govt IT Conference Gift Cards",
+    "item_details": [
+      {"description": "Prepaid Visa gift card $100 x50 for government conference attendees", "amount": 5000.00}
+    ],
+    "attachments": [
+      {
+        "filename": "prepaidcardhub_order.pdf",
+        "file_type": "invoice",
+        "simulated_content": "PrepaidCardHub Corporate - Prepaid Visa Gift Cards. 50 x USD 100. Intended distribution: government IT conference attendees including ministry staff, public sector IT leads, and regulatory officials."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": true,
+      "employee_count": 0,
+      "external_count": 50,
+      "known_public_officials": true,
+      "country_code": "US"
+    },
+    "risk_label": "NON_COMPLIANT",
+    "ground_truth_category": "gift_cards",
+    "ground_truth_reason": "Cash-equivalent gift cards to public sector officials and government employees are explicitly prohibited under policy POL-004; distribution at government event constitutes prohibited inducement; immediate block required"
+  },
+  {
+    "pr_id": "PR-2024-0028",
+    "submitted_by": "stephanie.cole@acme.com",
+    "submission_date": "2024-12-08",
+    "vendor": "EventPro Experiences",
+    "total_amount": 75000.00,
+    "currency": "USD",
+    "quantity": 1,
+    "description": "Exclusive resort weekend sponsorship for top government accounts - 3-day incentive retreat",
+    "commodity_code": "SPONSORSHIP",
+    "short_name": "Govt Account Incentive Retreat",
+    "item_details": [
+      {"description": "3-day resort incentive retreat - government accounts", "amount": 75000.00}
+    ],
+    "attachments": [
+      {
+        "filename": "eventpro_retreat_proposal.pdf",
+        "file_type": "quote",
+        "simulated_content": "EventPro Experiences - Exclusive 3-Day Resort Retreat. USD 75,000. Participants: 15 senior government account stakeholders including 3 ministry secretaries. Includes luxury accommodation, meals, entertainment, branded gifts. No GSMM registration submitted."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": true,
+      "employee_count": 5,
+      "external_count": 15,
+      "known_public_officials": true,
+      "country_code": "US"
+    },
+    "risk_label": "NON_COMPLIANT",
+    "ground_truth_category": "sponsorship",
+    "ground_truth_reason": "Exclusive incentive retreat for government officials at $75K exceeds all authorization levels; no GSMM registration; SVP+Legal approval required but not obtained; per-head cost $3,750 massively exceeds all public sector limits; potential FCPA violation"
+  },
+  {
+    "pr_id": "PR-2024-0029",
+    "submitted_by": "george.hunt@acme.com",
+    "submission_date": "2024-12-10",
+    "vendor": "EcoGifts via Dowlis Platform",
+    "total_amount": 500.00,
+    "currency": "USD",
+    "quantity": 10,
+    "description": "Charitable donation vouchers for employees via Dowlis approved platform - year-end recognition",
+    "commodity_code": "GIFTS-EMP",
+    "short_name": "Dowlis Charity Vouchers",
+    "item_details": [
+      {"description": "Dowlis charity donation voucher x10 employees", "amount": 500.00}
+    ],
+    "attachments": [
+      {
+        "filename": "dowlis_voucher_order.pdf",
+        "file_type": "invoice",
+        "simulated_content": "Dowlis Approved Platform - Charitable donation vouchers. 10 x USD 50. Employees select approved charity. Platform vendor: Dowlis Corp - on approved exception list. Year-end recognition program."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 10,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "US"
+    },
+    "risk_label": "COMPLIANT",
+    "ground_truth_category": "gift_cards",
+    "ground_truth_reason": "Dowlis platform is an approved exception; charitable donation vouchers via approved platform are explicitly exempt from gift card restrictions per POL-004 exception clause"
+  },
+  {
+    "pr_id": "PR-2024-0030",
+    "submitted_by": "vivian.stone@acme.com",
+    "submission_date": "2024-12-12",
+    "vendor": "MediSupply Co",
+    "total_amount": 420.00,
+    "currency": "USD",
+    "quantity": 3,
+    "description": "Mobility device purchase for 3 employees with documented medical need - ergonomic program",
+    "commodity_code": "IT-HARDWARE",
+    "short_name": "Employee Mobility Device Purchase",
+    "item_details": [
+      {"description": "Approved mobility device x3 - medical accommodation", "amount": 420.00}
+    ],
+    "attachments": [
+      {
+        "filename": "medisupply_quote.pdf",
+        "file_type": "quote",
+        "simulated_content": "MediSupply Co - Ergonomic mobility device. 3 units. Employee accommodation program. HR documented medical need on file for each recipient. Approved under mobility device exception."
+      }
+    ],
+    "recipient_context": {
+      "includes_customers": false,
+      "includes_public_sector": false,
+      "employee_count": 3,
+      "external_count": 0,
+      "known_public_officials": false,
+      "country_code": "US"
+    },
+    "risk_label": "COMPLIANT",
+    "ground_truth_category": "other",
+    "ground_truth_reason": "Mobility device exception applies; HR-documented medical need on file; approved under explicit policy exception catalog"
+  }
+]
