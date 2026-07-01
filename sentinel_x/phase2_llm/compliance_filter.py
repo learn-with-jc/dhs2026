@@ -136,7 +136,7 @@ class ComplianceFilter:
 
         logger.info("ComplianceFilter initialised with inversion pattern")
 
-    def evaluate(self, pr: PurchaseRequisition) -> Phase2Result:
+    def evaluate(self, pr: PurchaseRequisition, callbacks: list | None = None) -> Phase2Result:
         """
         Evaluate a PR using the inversion pattern + guardrails.
         Returns Phase2Result with final verdict.
@@ -167,6 +167,7 @@ class ComplianceFilter:
             a.simulated_content for a in pr.attachments
         ) or "No attachments"
 
+        invoke_cfg = {"callbacks": callbacks or [], "tags": [pr.pr_id, "phase2"]}
         try:
             raw: dict[str, Any] = self.chain.invoke({
                 "pr_id":               pr.pr_id,
@@ -182,7 +183,7 @@ class ComplianceFilter:
                 "attachment_content":  attachment_text,
                 "intent_summary":      intent_summary,
                 "format_instructions": self.parser.get_format_instructions(),
-            })
+            }, config=invoke_cfg)
             filter_output = ComplianceFilterOutput(**raw)
 
         except Exception as exc:

@@ -132,6 +132,7 @@ def build_graph() -> StateGraph:
 def run_pr_through_graph(
     pr_dict: dict,
     verbose: bool = False,
+    callbacks: list | None = None,
 ) -> SentinelState:
     """
     Run a single PR through the compiled Sentinel-X graph.
@@ -145,10 +146,12 @@ def run_pr_through_graph(
         pr_dict.get("pr_id", "unknown"),
     )
 
+    _cb  = callbacks or []
+    _cfg = {"recursion_limit": 20, "callbacks": _cb, "tags": [pr_dict.get("pr_id", ""), "phase3"]}
+
     if verbose:
-        # Stream for per-node logging
         merged: dict = dict(state)
-        for step in graph.stream(state, {"recursion_limit": 20}):
+        for step in graph.stream(state, _cfg):
             node_name = list(step.keys())[0]
             node_out  = step[node_name]
             conf      = node_out.get("confidence_score", 0)
@@ -156,5 +159,4 @@ def run_pr_through_graph(
             merged.update(node_out)
         return merged  # type: ignore[return-value]
 
-    # invoke() returns the full accumulated state (all trace events merged)
-    return graph.invoke(state, {"recursion_limit": 20})
+    return graph.invoke(state, _cfg)
