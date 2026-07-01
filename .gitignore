@@ -38,6 +38,7 @@ Thumbs.db
 # Generated data — too large for GitHub
 data/processed/vector_store/
 data/processed/audit_logs/
+data/processed/sentinel_x.db
 
 # Logs
 *.log

@@ -1,4 +1,3 @@
-cat > README.md << 'EOF'
 # 🛡️ Sentinel-X
 ## From Keywords to Agents: Enterprise Compliance AI
 
