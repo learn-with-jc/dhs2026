@@ -21,7 +21,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from pydantic import BaseModel, Field
 
-from sentinel_x.platform.data_models import TraceEvent
+from sentinel_x.platform.data_models import TraceEvent, PurchaseRequisition
 from sentinel_x.platform.llm_provider import get_llm
 from sentinel_x.phase3_agentic.state import SentinelState
 
@@ -70,7 +70,6 @@ Relevant Policy Chunks:
 def reason_compliance_node(state: SentinelState) -> dict:
     """LangGraph node: form initial compliance judgment."""
     t0      = time.time() * 1000
-    pr      = PurchaseRequisition(**state["pr_data"]) if "pr_data" in state else None
     intent  = state["extracted_intent"]
     chunks  = state["reranked_chunks"]
 
@@ -80,7 +79,6 @@ def reason_compliance_node(state: SentinelState) -> dict:
         for c in chunks
     ]) or "No relevant policy chunks retrieved."
 
-    from sentinel_x.platform.data_models import PurchaseRequisition
     pr_obj = PurchaseRequisition(**state["pr_data"])
 
     pr_summary = (

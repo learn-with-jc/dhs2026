@@ -145,19 +145,16 @@ def run_pr_through_graph(
         pr_dict.get("pr_id", "unknown"),
     )
 
-    # Stream execution for observability
-    final_state = None
-    for step in graph.stream(state, {"recursion_limit": 20}):
-        node_name = list(step.keys())[0]
-        if verbose:
-            node_state = step[node_name]
-            conf = node_state.get("confidence_score", 0)
+    if verbose:
+        # Stream for per-node logging
+        merged: dict = dict(state)
+        for step in graph.stream(state, {"recursion_limit": 20}):
+            node_name = list(step.keys())[0]
+            node_out  = step[node_name]
+            conf      = node_out.get("confidence_score", 0)
             logger.info("  ✓ Node: %-25s | conf=%.2f", node_name, conf)
-        final_state = step
+            merged.update(node_out)
+        return merged  # type: ignore[return-value]
 
-    # Extract final merged state
-    if final_state:
-        last_node = list(final_state.keys())[0]
-        return final_state[last_node]
-
-    return state
+    # invoke() returns the full accumulated state (all trace events merged)
+    return graph.invoke(state, {"recursion_limit": 20})

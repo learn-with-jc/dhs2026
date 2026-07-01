@@ -46,3 +46,15 @@ compliance review — from keyword matching to agentic reasoning.
 ---
 
 ### The Four Phases
+
+| Phase | Technique | Key Innovation |
+|-------|-----------|---------------|
+| **Phase 1** | Keyword Detection | Volume — no LLM needed |
+| **Phase 2** | Prompt Engineering | Context-aware interpretation |
+| **Phase 3** | LangGraph Agents | Self-correcting reasoning loops |
+| **Phase 4** | Deterministic Rules | Auditability and reproducibility |
+
+---
+
+Use the sidebar to navigate between pages.
+""")

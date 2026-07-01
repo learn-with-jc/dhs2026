@@ -24,22 +24,22 @@ def verdict_card(
     colour, emoji = VERDICT_COLOURS.get(verdict, VERDICT_COLOURS["UNKNOWN"])
     conf_bar      = "█" * int(confidence * 10) + "░" * (10 - int(confidence * 10))
 
+    confidence_html = (
+        f"<div style=\"font-size:0.8em;color:#374151;margin-top:4px\">"
+        f"Confidence: {conf_bar} {confidence:.0%}</div>"
+    ) if confidence > 0 else ""
+
+    label_html = (
+        f"<div style=\"font-size:0.85em;color:#6B7280\">{phase_label}</div>"
+    ) if phase_label else ""
+
     st.markdown(
-        f"""
-        <div style="
-            border-left: 5px solid {colour};
-            padding: 12px 16px;
-            border-radius: 4px;
-            background: #F9FAFB;
-            margin-bottom: 12px;
-        ">
-            <div style="font-size:1.1em;font-weight:700;color:{colour}">
-                {emoji} {verdict}
-            </div>
-            {"<div style='font-size:0.85em;color:#6B7280'>" + phase_label + "</div>" if phase_label else ""}
-            {"<div style='font-size:0.8em;color:#374151;margin-top:4px'>" + f"Confidence: {conf_bar} {confidence:.0%}" + "</div>" if confidence > 0 else ""}
-            {"<div style='font-size:0.8em;color:#374151;margin-top:4px'>" + extra + "</div>" if extra else ""}
-        </div>
-        """,
+        f"""<div style="border-left:5px solid {colour};padding:12px 16px;border-radius:4px;background:#F9FAFB;margin-bottom:6px;">
+<div style="font-size:1.1em;font-weight:700;color:{colour}">{emoji} {verdict}</div>
+{label_html}
+{confidence_html}
+</div>""",
         unsafe_allow_html=True,
     )
+    if extra:
+        st.caption(extra)

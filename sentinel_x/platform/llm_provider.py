@@ -169,7 +169,7 @@ def get_embeddings(
     if _provider == "ollama":
         from langchain_ollama import OllamaEmbeddings
         return OllamaEmbeddings(
-            model="nomic-embed-text",
+            model=_model,
             base_url=OLLAMA_BASE_URL,
         )
 

@@ -21,7 +21,7 @@ import logging
 
 from sentinel_x.platform.data_models import (
     PurchaseRequisition, DecisionRecord, VerdictStatus,
-    PolicyCheckResult, IncentiveCategory,
+    PolicyCheckResult, IncentiveCategory, RecipientType,
 )
 from sentinel_x.phase3_agentic.state import SentinelState
 from sentinel_x.phase4_audit.taxonomy          import resolve_taxonomy
@@ -121,7 +121,6 @@ class AuditRuleEngine:
                 primary_cat == IncentiveCategory.GIFT_CARDS
                 and recipient == RecipientType.CUSTOMER_PUBLIC
             ):
-                from sentinel_x.platform.data_models import RecipientType
                 flags.append("GIFT_CARD_PUBLIC_SECTOR_PROHIBITION")
                 policy_checks.append(PolicyCheckResult(
                     rule_id       = "POL-004-PUB",
