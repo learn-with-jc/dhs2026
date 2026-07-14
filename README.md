@@ -39,7 +39,7 @@ PR Input
 ├── Phase 3: LangGraph multi-agent reasoning
 │ ├── extract_intent
 │ ├── classify_policy
-│ ├── retrieve_and_rerank (ChromaDB + BM25 + BAAI reranker)
+│ ├── retrieve_and_rerank (ChromaDB + BM25 + RRF fusion)
 │ ├── reason_compliance
 │ ├── critique_reasoning ← loop engineering
 │ ├── verdict_gate ← confidence routing
@@ -55,7 +55,6 @@ PR Input
 - **LangChain** — LLM abstractions and prompt management
 - **OpenAI GPT-4o** — Primary LLM (provider-agnostic swap layer included)
 - **ChromaDB** — Vector store for policy retrieval
-- **BAAI/bge-reranker-v2-m3** — Cross-encoder reranking
 - **BM25** — Sparse retrieval for exact threshold matching
 - **Streamlit** — Interactive demo application
 - **Pydantic v2** — Data models and validation
@@ -106,7 +105,7 @@ sentinel-x/
 │       ├── purchase_requisitions/  # 30 synthetic PRs
 │       └── precedents/        # 20 historical decisions
 ├── sentinel_x/
-│   ├── platform/              # LLM provider, vector store, reranker
+│   ├── platform/              # LLM provider, vector store, hybrid search
 │   ├── phase1_keyword/        # Keyword detection engine
 │   ├── phase2_llm/            # LLM compliance filter + guardrails
 │   ├── phase3_agentic/        # LangGraph multi-agent system
