@@ -79,13 +79,7 @@ def emit_decision_log(
     Emit a structured decision log for audit trail.
     Writes to file if output_dir provided.
 
-    # ╔══════════════════════════════════════════════════════════════╗
-    # ║  SNIPPET: PPT-SLIDE-24 | Phase 4 | Decision Log             ║
-    # ║  STORY:   The audit trail is not a log file.                 ║
-    # ║           It is a structured, queryable decision record      ║
-    # ║           that maps every finding to a rule and evidence.    ║
-    # ║  OUTPUT:  JSON record — reproducible, referenceable          ║
-    # ╚══════════════════════════════════════════════════════════════╝
+    
     """
     log_record = {
         "pr_id":           record.pr_id,
@@ -140,18 +134,3 @@ def _compute_audit_hash(record: dict) -> str:
     )
     return hashlib.sha256(content.encode()).hexdigest()[:16]
 
-# SPEAKER NOTE (PPT-SLIDE-24):
-#
-# WHAT TO SAY (not read):
-#   "Every decision record gets a hash. The hash is computed
-#    from the content of the record — rules checked, findings,
-#    evidence refs — excluding the timestamp. Same input,
-#    same hash. If someone modifies this record after the fact,
-#    the hash changes. This is auditability at the data layer.
-#    An LLM could not produce this — it's stochastic. Only a
-#    deterministic rule engine can make this guarantee."
-#
-# POINT AT:     log_record["audit_hash"] = _compute_audit_hash(...)
-# TRANSITION TO: "Let's bring all four phases together
-#                 in the Streamlit app..."
-# AVOID SAYING: "As you can see in line 7..."

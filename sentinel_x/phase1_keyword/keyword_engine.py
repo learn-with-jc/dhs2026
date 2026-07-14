@@ -114,12 +114,6 @@ class KeywordEngine:
     ) -> None:
         self.keyword_df = keyword_df or build_keyword_dataframe()
 
-    # ╔══════════════════════════════════════════════════════════════╗
-    # ║  SNIPPET: PPT-SLIDE-08 | Phase 1 | Keyword Lookup           ║
-    # ║  STORY:   The entire compliance decision reduced to a        ║
-    # ║           DataFrame lookup. Fast, brittle, context-blind.   ║
-    # ║  OUTPUT:  matched_keywords list — what triggered the flag   ║
-    # ╚══════════════════════════════════════════════════════════════╝
 
     def evaluate(self, pr: PurchaseRequisition) -> Phase1Result:
         """
@@ -191,18 +185,3 @@ class KeywordEngine:
             tokens.add(f"{words[i]} {words[i+1]}")
 
         return tokens
-
-# SPEAKER NOTE (PPT-SLIDE-08):
-#
-# WHAT TO SAY (not read):
-#   "This is the entire Phase 1 decision. The compliance team
-#    maintained a spreadsheet of keywords. We tokenised the PR
-#    text and checked for membership. If your PR description
-#    contains 'dinner' — flagged. If it contains 'gift' — flagged.
-#    It worked. We got immediate ROI. And then we looked at the
-#    false positive rate and realised we had a problem."
-#
-# POINT AT:     the matched = keyword_df[...] block
-# TRANSITION TO: "Let's look at what that false positive
-#                 rate actually looked like..."
-# AVOID SAYING: "As you can see in line 7..."

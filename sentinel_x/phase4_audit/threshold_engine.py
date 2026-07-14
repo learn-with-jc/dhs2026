@@ -40,12 +40,7 @@ def check_meal_per_head(
     """
     Check per-head meal cost against applicable threshold.
 
-    # ╔══════════════════════════════════════════════════════════════╗
-    # ║  SNIPPET: PPT-SLIDE-23 | Phase 4 | Threshold Rule Check     ║
-    # ║  STORY:   $177/head vs a $150 policy limit.                  ║
-    # ║           This is not a reasoning problem. It is arithmetic. ║
-    # ║  OUTPUT:  passed boolean — the deterministic verdict         ║
-    # ╚══════════════════════════════════════════════════════════════╝
+    
     """
     from config.settings import THRESHOLDS
 
@@ -151,20 +146,3 @@ def check_gift_threshold(
         severity     = "high" if not passed else "none",
     )
 
-# SPEAKER NOTE (PPT-SLIDE-23):
-#
-# WHAT TO SAY (not read):
-#   "This function is the antithesis of Phase 3. No prompt.
-#    No LLM call. No reasoning chain. The policy says $150/head
-#    for external guests. The PR has 18 people and $3,200 total.
-#    That's $177/head. The check is a single comparison.
-#    passed = cpp <= threshold. This is arithmetic dressed up
-#    as compliance. And it has to be arithmetic — because if an
-#    LLM does this calculation and gets it wrong, that's a
-#    regulatory exposure. Determinism here is not laziness.
-#    It's the right engineering choice."
-#
-# POINT AT:     passed = cpp <= threshold
-# TRANSITION TO: "Once we have all the check results, we need
-#                 to emit an explainable decision record..."
-# AVOID SAYING: "As you can see in line 7..."

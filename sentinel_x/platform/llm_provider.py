@@ -35,9 +35,6 @@ ProviderType = Literal["openai", "anthropic", "ollama"]
 # LLM FACTORY
 # ─────────────────────────────────────────────
 
-# ╔══════════════════════════════════════════════════════════════╗
-# ║  SNIPPET: PPT-SLIDE-13 | Phase 2 | Provider Swap Layer      ║
-# ╚══════════════════════════════════════════════════════════════╝
 
 def get_llm(
     provider: ProviderType | None = None,
@@ -117,20 +114,6 @@ def validate_provider_config(provider: ProviderType | None = None) -> None:
         )
     logger.info("Provider config validated for: %s", _provider)
 
-# SPEAKER NOTE (PPT-SLIDE-13):
-#
-# WHAT TO SAY (not read):
-#   "Every agent, every phase, every prompt call goes through
-#    this one function. Change one line in your .env file and
-#    the entire system switches from GPT-4 to Claude to a local
-#    Mixtral. We built this on day one because model benchmarking
-#    was part of Phase 2 — and we didn't want to rewrite agents
-#    every time we swapped a model."
-#
-# POINT AT:     get_llm() signature and the #◄ comment below it
-# TRANSITION TO: "Now let's look at how documents get processed
-#                 before any LLM ever sees them..."
-# AVOID SAYING: "As you can see in line 7..."
 
 
 # ─────────────────────────────────────────────

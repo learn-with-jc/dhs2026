@@ -65,19 +65,6 @@ class ComplianceFilterOutput(BaseModel):
     )
 
 
-# ─────────────────────────────────────────────
-# THE INVERSION PROMPT
-# This is the architectural shift — note the framing
-# ─────────────────────────────────────────────
-
-# ╔══════════════════════════════════════════════════════════════╗
-# ║  SNIPPET: PPT-SLIDE-11 | Phase 2 | The Inversion Pattern    ║
-# ║  STORY:   We stopped asking "is this non-compliant?"        ║
-# ║           We started asking "is this clearly compliant?"    ║
-# ║           Everything else becomes the review pool.          ║
-# ║  OUTPUT:  is_clearly_compliant boolean — the inverted lens  ║
-# ╚══════════════════════════════════════════════════════════════╝
-
 IDENTIFY_COMPLIANT_PROMPT = ChatPromptTemplate.from_messages([
     ("system", """You are a compliance pre-screening assistant. \
 Your job is NOT to find violations. Your job is to identify \
@@ -232,20 +219,3 @@ class ComplianceFilter:
     ) -> list[Phase2Result]:
         return [self.evaluate(pr) for pr in prs]
 
-# SPEAKER NOTE (PPT-SLIDE-11):
-#
-# WHAT TO SAY (not read):
-#   "Here's the prompt that changed everything. We're not asking
-#    the LLM to find violations. We're asking it to confirm
-#    compliance. The system prompt says: a PR is clearly compliant
-#    ONLY IF it has none of these components. If there's any doubt,
-#    return false. This means everything ambiguous goes to review —
-#    which is exactly what a cautious analyst would do.
-#    The review pool shrinks because clean PRs — software licenses,
-#    hardware, logistics — get cleared immediately.
-#    What's left is actually worth a human's time."
-#
-# POINT AT:     IDENTIFY_COMPLIANT_PROMPT and the chain assignment
-# TRANSITION TO: "Let's look at the numbers — what did this
-#                 actually do to our false positive rate?"
-# AVOID SAYING: "As you can see in line 7..."

@@ -130,12 +130,6 @@ def compute_phase1_metrics(
     """
     Compute detection metrics for Phase 1 keyword engine output.
     """
-    # ╔══════════════════════════════════════════════════════════════╗
-    # ║  SNIPPET: PPT-SLIDE-09 | Phase 1 | False Positive Rate      ║
-    # ║  STORY:   The single number that made us build Phase 2.      ║
-    # ║           In a <1% non-compliant dataset, FPR is everything. ║
-    # ║  OUTPUT:  FPR % — the analyst pain number                    ║
-    # ╚══════════════════════════════════════════════════════════════╝
 
     metrics = DetectionMetrics(phase="phase1", total_prs=len(prs))
 
@@ -163,24 +157,6 @@ def compute_phase1_metrics(
         metrics.analyst_workload_ratio * 100,
     )
     return metrics
-
-# SPEAKER NOTE (PPT-SLIDE-09):
-#
-# WHAT TO SAY (not read):
-#   "This number — the false positive rate — is the one that
-#    forced every architectural decision that follows.
-#    When fewer than 1% of your PRs are actually non-compliant,
-#    even a 40% false positive rate means analysts spend most
-#    of their time reviewing clean PRs. The system was technically
-#    working — it was catching violations — but it was creating
-#    more work than it was saving. That's the moment we moved
-#    to Phase 2."
-#
-# POINT AT:     fpr = metrics.false_positive_rate
-# TRANSITION TO: "So in Phase 2 we made a counterintuitive call.
-#                 Instead of getting better at finding violations,
-#                 we tried to get better at finding clean PRs."
-# AVOID SAYING: "As you can see in line 7..."
 
 
 def compute_phase2_metrics(
