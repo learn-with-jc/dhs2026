@@ -156,6 +156,10 @@ def run_pr_through_graph(
             node_out  = step[node_name]
             conf      = node_out.get("confidence_score", 0)
             logger.info("  ✓ Node: %-25s | conf=%.2f", node_name, conf)
+            # trace_log uses operator.add reducer — must append, not replace
+            if "trace_log" in node_out:
+                merged["trace_log"] = merged["trace_log"] + node_out["trace_log"]
+                node_out = {k: v for k, v in node_out.items() if k != "trace_log"}
             merged.update(node_out)
         return merged  # type: ignore[return-value]
 

@@ -20,7 +20,7 @@ from datetime import datetime
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from sentinel_x.platform.data_models import TraceEvent
 from sentinel_x.platform.llm_provider import get_llm
@@ -30,13 +30,19 @@ logger = logging.getLogger(__name__)
 
 
 class RecommendationOutput(BaseModel):
-    final_verdict:      str
-    summary:            str
-    key_findings:       list[str]
+    final_verdict:       str
+    summary:             str
+    key_findings:        list[str]
     recommended_actions: list[str]
-    policy_references:  list[str]
-    analyst_notes:      str
-    confidence:         float
+    policy_references:   list[str]
+    analyst_notes:       str
+    confidence:          float
+
+    @field_validator("confidence")
+    @classmethod
+    def normalize_confidence(cls, v: float) -> float:
+        # LLMs often return 0–100; normalize to 0–1
+        return v / 100.0 if v > 1.0 else v
 
 
 RECOMMENDATION_PROMPT = ChatPromptTemplate.from_messages([

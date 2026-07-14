@@ -1,12 +1,11 @@
 # sentinel_x/phase3_agentic/agents/retrieve_and_rerank.py
 """
-Sentinel-X | Agent 3 — Retrieve and Rerank
+Sentinel-X | Agent 3 — Retrieve
 
-Executes the full 4-step retrieval pipeline:
+Executes the 3-step retrieval pipeline:
   Step 1: Dense retrieval (ChromaDB)
   Step 2: Sparse retrieval (BM25)
-  Step 3: RRF fusion
-  Step 4: BAAI cross-encoder reranking
+  Step 3: RRF fusion → top-K by score
 
 Filters retrieved chunks to only those from
 matched policies (classified in previous node).
@@ -24,7 +23,6 @@ from sentinel_x.platform.data_models import (
 from sentinel_x.platform.vector_store import (
     VectorStoreManager, BM25Retriever, hybrid_search,
 )
-from sentinel_x.platform.reranker import BGEReranker
 from sentinel_x.phase3_agentic.state import SentinelState
 
 logger = logging.getLogger(__name__)
@@ -43,14 +41,8 @@ def _get_store_and_bm25() -> tuple[VectorStoreManager, BM25Retriever]:
     return store, bm25
 
 
-@lru_cache(maxsize=1)
-def _get_reranker() -> BGEReranker:
-    from config.settings import RERANKER_MODEL
-    return BGEReranker(RERANKER_MODEL)
-
-
 def retrieve_and_rerank_node(state: SentinelState) -> dict:
-    """LangGraph node: hybrid search + rerank."""
+    """LangGraph node: hybrid search, return top-K by RRF score."""
     from config.settings import DENSE_TOP_K, SPARSE_TOP_K, RERANK_TOP_K
 
     t0             = time.time() * 1000
@@ -73,7 +65,6 @@ def retrieve_and_rerank_node(state: SentinelState) -> dict:
         logger.info("Retry %d: enriched query with critique", retry_count)
 
     store, bm25 = _get_store_and_bm25()
-    reranker    = _get_reranker()
 
     # Hybrid search
     fused_chunks = hybrid_search(
@@ -100,15 +91,15 @@ def retrieve_and_rerank_node(state: SentinelState) -> dict:
     else:
         filtered = fused_chunks
 
-    # Rerank
-    reranked = reranker.rerank(query, filtered, top_k=RERANK_TOP_K)
+    # Take top-K by RRF score
+    reranked = sorted(filtered, key=lambda c: c.rerank_score, reverse=True)[:RERANK_TOP_K]
 
     elapsed = (time.time() * 1000) - t0
     trace   = TraceEvent(
         agent_name     = "retrieve_and_rerank",
         timestamp      = datetime.utcnow(),
         input_summary  = f"query={query[:80]} | policies={matched_pols}",
-        output_summary = f"retrieved={len(fused_chunks)} → reranked={len(reranked)}",
+        output_summary = f"retrieved={len(fused_chunks)} → top_k={len(reranked)}",
         confidence     = reranked[0].rerank_score if reranked else 0.0,
         duration_ms    = elapsed,
         notes          = f"retry={retry_count}",

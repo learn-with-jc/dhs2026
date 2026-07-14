@@ -57,10 +57,6 @@ MAX_RETRY_COUNT          = int(os.getenv("MAX_RETRY_COUNT",            "2"))
 DENSE_TOP_K              = int(os.getenv("DENSE_TOP_K",                "20"))
 SPARSE_TOP_K             = int(os.getenv("SPARSE_TOP_K",               "20"))
 RERANK_TOP_K             = int(os.getenv("RERANK_TOP_K",               "5"))
-RERANKER_MODEL           = os.getenv(
-                               "RERANKER_MODEL",
-                               "BAAI/bge-reranker-v2-m3"
-                           )
 EMBEDDING_MODEL          = os.getenv(
                                "EMBEDDING_MODEL",
                                "text-embedding-3-small"

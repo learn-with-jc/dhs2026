@@ -56,8 +56,19 @@ if pr and st.button("▶ Run Agent Graph", type="primary"):
     st.markdown("---")
     st.markdown("### Agent Execution Graph")
     from sentinel_x.observability.graph_visualizer import build_execution_mermaid
+    import streamlit.components.v1 as components
     mermaid_src = build_execution_mermaid(trace_log, verdict, escalated)
-    st.markdown(f"```mermaid\n{mermaid_src}\n```")
+    components.html(
+        f"""
+        <div id="mermaid-graph" class="mermaid">{mermaid_src}</div>
+        <script type="module">
+            import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+            mermaid.initialize({{ startOnLoad: true, theme: 'default' }});
+        </script>
+        """,
+        height=500,
+        scrolling=True,
+    )
 
     # Agent trace table
     st.markdown("---")
