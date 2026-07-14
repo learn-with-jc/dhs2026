@@ -75,13 +75,6 @@ def critique_reasoning_node(state: SentinelState) -> dict:
     """
     LangGraph node: critique the initial compliance reasoning.
 
-    # ╔══════════════════════════════════════════════════════════════╗
-    # ║  SNIPPET: PPT-SLIDE-18 | Phase 3 | Critique Loop Trigger    ║
-    # ║  STORY:   This is not retry logic. This is the agent knowing ║
-    # ║           the boundary of its own competence.                ║
-    # ║  OUTPUT:  has_gaps boolean + recommend_retry — the signals   ║
-    # ║           that control whether we loop or proceed            ║
-    # ╚══════════════════════════════════════════════════════════════╝
     """
     t0      = time.time() * 1000
     from sentinel_x.platform.data_models import PurchaseRequisition
@@ -157,19 +150,3 @@ def critique_reasoning_node(state: SentinelState) -> dict:
         "trace_log":        [trace],
     }
 
-# SPEAKER NOTE (PPT-SLIDE-18):
-#
-# WHAT TO SAY (not read):
-#   "This agent does one thing: it reads the initial reasoning
-#    and asks 'what did we miss?' If it finds gaps, it sets
-#    needs_retry to True and the graph loops back to retrieval
-#    with a more informed query. The key line here is the
-#    should_retry check — it respects the retry budget.
-#    We cannot let this loop forever. Two retries maximum,
-#    then we take the best answer we have or escalate.
-#    That's not a limitation — that's production discipline."
-#
-# POINT AT:     should_retry = (output.recommend_retry and ...)
-# TRANSITION TO: "The verdict_gate decides what happens next
-#                 based on confidence and retry state..."
-# AVOID SAYING: "As you can see in line 7..."

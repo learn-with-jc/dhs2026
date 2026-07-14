@@ -151,14 +151,6 @@ class GuardrailStack:
     """
     Runs all guardrail checks and returns consolidated results.
     Any triggered guardrail overrides the LLM verdict.
-
-    # ╔══════════════════════════════════════════════════════════════╗
-    # ║  SNIPPET: PPT-SLIDE-12 | Phase 2 | Guardrail Stack          ║
-    # ║  STORY:   Some decisions should never be left to the LLM.   ║
-    # ║           Guardrails run first. They cannot be overridden.  ║
-    # ║  OUTPUT:  List of triggered guardrails — deterministic       ║
-    # ║           safety net around LLM inference                   ║
-    # ╚══════════════════════════════════════════════════════════════╝
     """
 
     CHECKS = [
@@ -197,20 +189,3 @@ class GuardrailStack:
             )
         return results
 
-# SPEAKER NOTE (PPT-SLIDE-12):
-#
-# WHAT TO SAY (not read):
-#   "These five checks run before the LLM sees the PR and
-#    their result cannot be overridden by the LLM verdict.
-#    Known public officials? Always review — no inference needed.
-#    Flagged vendor? Always review. Amount over $10,000?
-#    Always review. The LLM is powerful but it's also stochastic.
-#    For binary, high-stakes, lookup-based decisions we use
-#    deterministic code. This is the architectural principle
-#    that carries all the way through to Phase 4."
-#
-# POINT AT:     triggered = [r for r in results if r.triggered]
-# TRANSITION TO: "Now let's see the inversion pattern —
-#                 the insight that actually moved the needle
-#                 on false positives..."
-# AVOID SAYING: "As you can see in line 7..."
