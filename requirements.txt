@@ -1,4 +1,4 @@
-# Sentinel-X Requirements
+# PRism Requirements
 # DataHack Summit 2026
 
 # ── LangChain + LangGraph ─────────────────────────────────────

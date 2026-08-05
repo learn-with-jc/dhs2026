@@ -1,6 +1,6 @@
 # app/pages/02_agent_graph.py
 """
-Sentinel-X | Page 2 — Agent Graph Visualizer
+PRism | Page 2 — Agent Graph Visualizer
 
 Shows the LangGraph execution trace as a Mermaid diagram.
 Select a REVIEW_NEEDED PR and watch the agents work.
@@ -15,6 +15,14 @@ import streamlit as st
 from app.components.pr_selector  import pr_selector_widget
 from app.components.verdict_card import verdict_card
 
+
+def _get_cache():
+    if "sx_cache" not in st.session_state:
+        from prism.platform.observability import PhaseCache
+        st.session_state.sx_cache = PhaseCache()
+    return st.session_state.sx_cache
+
+
 st.title("🔗 Agent Graph — Live Execution Trace")
 st.markdown(
     "Watch Phase 3 agents execute on a PR. "
@@ -27,13 +35,35 @@ st.info(
     "Select a non-compliant or review PR for the most interesting trace."
 )
 
+cache = _get_cache()
 pr = pr_selector_widget("Select a PR for agent analysis")
 
-if pr and st.button("▶ Run Agent Graph", type="primary"):
+col_run, col_clear = st.columns([3, 1])
+with col_run:
+    run_clicked = st.button("▶ Run Agent Graph", type="primary")
+with col_clear:
+    clear_clicked = st.button("🗑 Clear Cache", help="Force re-run for this PR")
 
-    with st.spinner("Running Phase 3 agent graph... (this takes 15-30 seconds)"):
-        from sentinel_x.phase3_agentic.graph.orchestrator import run_pr_through_graph
-        final_state = run_pr_through_graph(pr.model_dump(), verbose=True)
+if pr and clear_clicked:
+    cache.invalidate(pr.pr_id)
+    st.toast(f"Cache cleared for {pr.pr_id}", icon="🗑")
+
+if pr and run_clicked:
+    pr_data = pr.model_dump(mode="json")
+    cached  = cache.get(pr.pr_id, 3, pr_data)
+
+    if cached:
+        final_state = cached
+        st.caption("📦 Loaded from cache — no LLM calls made. Use \"Clear Cache\" to force a fresh run.")
+    else:
+        with st.spinner("Running Phase 3 agent graph... (this takes 15-30 seconds)"):
+            from prism.phase3_agentic.graph.orchestrator import (
+                run_pr_through_graph,
+                normalize_phase3_result,
+            )
+            raw_state   = run_pr_through_graph(pr.model_dump(), verbose=True)
+            final_state = normalize_phase3_result(raw_state)
+            cache.set(pr.pr_id, 3, pr_data, final_state)
 
     trace_log = final_state.get("trace_log", [])
     verdict   = final_state.get("verdict", "UNKNOWN")
@@ -55,7 +85,7 @@ if pr and st.button("▶ Run Agent Graph", type="primary"):
     # Mermaid diagram
     st.markdown("---")
     st.markdown("### Agent Execution Graph")
-    from sentinel_x.observability.graph_visualizer import build_execution_mermaid
+    from prism.observability.graph_visualizer import build_execution_mermaid
     import streamlit.components.v1 as components
     mermaid_src = build_execution_mermaid(trace_log, verdict, escalated)
     components.html(

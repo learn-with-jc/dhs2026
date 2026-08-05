@@ -1,6 +1,6 @@
 # app/main.py
 """
-Sentinel-X | Streamlit Demo Application
+PRism | Streamlit Demo Application
 
 Entry point for the multi-page Streamlit app.
 Run with: streamlit run app/main.py
@@ -19,17 +19,17 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import streamlit as st
 
 st.set_page_config(
-    page_title = "Sentinel-X | Compliance AI",
-    page_icon  = "🛡️",
+    page_title = "PRism | Compliance AI",
+    page_icon  = "🔷",
     layout     = "wide",
     initial_sidebar_state = "expanded",
 )
 
-st.title("🛡️ Sentinel-X")
+st.title("🔷 PRism")
 st.subheader("Enterprise Compliance AI — DataHack Summit 2026")
 
 st.markdown("""
-**Sentinel-X** demonstrates an evolving AI system for Purchase Requisition
+**PRism** demonstrates an evolving AI system for Purchase Requisition
 compliance review — from keyword matching to agentic reasoning.
 
 ---

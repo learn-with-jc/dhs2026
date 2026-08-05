@@ -1,6 +1,6 @@
 # config/settings.py
 """
-Sentinel-X | Central Configuration
+PRism | Central Configuration
 All environment-driven settings with safe defaults.
 Single place to change models, thresholds, and paths.
 """
@@ -137,4 +137,4 @@ TAXONOMY_PRIORITY = [
 LOG_LEVEL                = os.getenv("LOG_LEVEL", "INFO")
 ENABLE_LANGSMITH         = os.getenv("ENABLE_LANGSMITH", "false").lower() == "true"
 LANGSMITH_API_KEY        = os.getenv("LANGSMITH_API_KEY", "")
-LANGSMITH_PROJECT        = os.getenv("LANGSMITH_PROJECT", "sentinel-x")
+LANGSMITH_PROJECT        = os.getenv("LANGSMITH_PROJECT", "prism")

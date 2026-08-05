@@ -1,6 +1,6 @@
 # app/pages/04_metrics_dashboard.py
 """
-Sentinel-X | Page 4 — Metrics Dashboard
+PRism | Page 4 — Metrics Dashboard
 
 Runs all 30 PRs through Phase 1 and Phase 2 and
 shows the improvement in false positive rate and
@@ -20,12 +20,35 @@ st.markdown(
     "and analyst review workload."
 )
 
-if st.button("▶ Run Batch Evaluation (all 30 PRs)", type="primary"):
+
+def _get_cache():
+    if "sx_cache" not in st.session_state:
+        from prism.platform.observability import PhaseCache
+        st.session_state.sx_cache = PhaseCache()
+    return st.session_state.sx_cache
+
+
+cache = _get_cache()
+
+col_run, col_clear = st.columns([3, 1])
+with col_run:
+    run_clicked = st.button("▶ Run Batch Evaluation (all 30 PRs)", type="primary")
+with col_clear:
+    clear_clicked = st.button("🗑 Clear Cache", help="Force re-run of Phase 2 for all 30 PRs")
+
+if clear_clicked:
     from config.settings import PR_DIR
-    from sentinel_x.platform.data_models     import PurchaseRequisition
-    from sentinel_x.phase1_keyword.keyword_engine import KeywordEngine
-    from sentinel_x.phase2_llm.compliance_filter  import ComplianceFilter
-    from sentinel_x.phase1_keyword.false_positive_tracker import (
+    raw = json.loads((PR_DIR / "sample_prs.json").read_text())
+    for p in raw:
+        cache.invalidate(p["pr_id"])
+    st.toast("Cache cleared for all 30 PRs", icon="🗑")
+
+if run_clicked:
+    from config.settings import PR_DIR
+    from prism.platform.data_models     import PurchaseRequisition, Phase2Result
+    from prism.phase1_keyword.keyword_engine import KeywordEngine
+    from prism.phase2_llm.compliance_filter  import ComplianceFilter
+    from prism.phase1_keyword.false_positive_tracker import (
         compute_phase1_metrics, compute_phase2_metrics, PhaseComparison,
     )
 
@@ -37,10 +60,22 @@ if st.button("▶ Run Batch Evaluation (all 30 PRs)", type="primary"):
         p1_results = p1_engine.evaluate_batch(prs)
         p1_metrics = compute_phase1_metrics(prs, p1_results)
 
-    with st.spinner("Phase 2: LLM filter... (may take 1-2 minutes)"):
+    with st.spinner("Phase 2: LLM filter... (cached PRs are instant)"):
         p2_filter  = ComplianceFilter()
-        p2_results = p2_filter.evaluate_batch(prs)
+        p2_results = []
+        p2_cache_hits = 0
+        for pr in prs:
+            pr_data = pr.model_dump(mode="json")
+            cached  = cache.get(pr.pr_id, 2, pr_data)
+            if cached:
+                p2_results.append(Phase2Result.model_validate(cached))
+                p2_cache_hits += 1
+            else:
+                result = p2_filter.evaluate(pr)
+                cache.set(pr.pr_id, 2, pr_data, result.model_dump(mode="json"))
+                p2_results.append(result)
         p2_metrics = compute_phase2_metrics(prs, p2_results)
+    st.caption(f"📦 Phase 2 cache: {p2_cache_hits}/{len(prs)} hits")
 
     # Metrics cards
     st.markdown("---")

@@ -1,4 +1,4 @@
-# 🛡️ Sentinel-X
+# 🔷 PRism
 ## From Keywords to Agents: Enterprise Compliance AI
 
 > Presented at **DataHack Summit 2026**
@@ -8,9 +8,9 @@
 
 ---
 
-## What is Sentinel-X?
+## What is PRism?
 
-Sentinel-X is a practitioner's demonstration of how an enterprise AI system
+PRism is a practitioner's demonstration of how an enterprise AI system
 evolves through four phases — from keyword matching to agentic reasoning —
 solving Purchase Requisition compliance review at scale.
 
@@ -53,7 +53,7 @@ PR Input
 
 - **LangGraph** — Agent orchestration and state management
 - **LangChain** — LLM abstractions and prompt management
-- **OpenAI GPT-4o** — Primary LLM (provider-agnostic swap layer included)
+- **OpenAI GPT-4o** — Primary LLM (provider-agnostic swap layer — also runs on Anthropic Claude or local Ollama, no code changes needed)
 - **ChromaDB** — Vector store for policy retrieval
 - **BM25** — Sparse retrieval for exact threshold matching
 - **Streamlit** — Interactive demo application
@@ -65,8 +65,8 @@ PR Input
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/yourusername/sentinel-x.git
-cd sentinel-x
+git clone https://github.com/learn-with-jc/dhs2026.git
+cd dhs2026
 
 # 2. Create virtual environment
 python3 -m venv .venv
@@ -79,32 +79,64 @@ pip install -e .
 # 4. Set up environment
 cp .env.example .env
 # Edit .env and add your OPENAI_API_KEY
+# (no OpenAI key? see "Running without an API key" below)
 
 # 5. Build vector index
 make index
 
 # 6. Run the phases
-python -m sentinel_x.phase1_keyword.run_phase1   # no API key needed
-python -m sentinel_x.phase2_llm.run_phase2        # needs OpenAI
-python -m sentinel_x.phase4_audit.run_phase4      # no API key needed
-python -m sentinel_x.phase3_agentic.run_phase3    # needs OpenAI
+python -m prism.phase1_keyword.run_phase1   # no LLM needed
+python -m prism.phase2_llm.run_phase2        # needs an LLM provider
+python -m prism.phase4_audit.run_phase4      # no LLM needed
+python -m prism.phase3_agentic.run_phase3    # needs an LLM provider
 
 # 7. Launch the Streamlit app
 streamlit run app/main.py
+```
+
+---
+
+### Running without an API key (Ollama)
+
+Phases 2 and 3 need an LLM, but not necessarily a paid one. The
+provider-agnostic swap layer (`prism/platform/llm_provider.py`) already
+supports [Ollama](https://ollama.com) for fully local, offline inference —
+no OpenAI or Anthropic key required.
+
+```bash
+# 1. Install Ollama, then pull the default model
+ollama pull mixtral
+
+# 2. Point PRism at it in .env
+LLM_PROVIDER=ollama
+OLLAMA_MODEL=mixtral
+OLLAMA_BASE_URL=http://localhost:11434
+
+# 3. Run as usual — same commands, same code path
+python -m prism.phase2_llm.run_phase2
+python -m prism.phase3_agentic.run_phase3
+streamlit run app/main.py
+```
+
+Swap `OLLAMA_MODEL` for any locally-pulled model (e.g. `llama3.1`,
+`qwen2.5`) — nothing else in the codebase needs to change. The Streamlit
+app's provider status banner will confirm Ollama is reachable and the
+model is pulled before you run anything.
 
 
 ---
 
-Repository Structure
+## Repository Structure
 
-sentinel-x/
+```
+prism/
 ├── config/                    # Central configuration
 ├── data/
 │   └── raw/
 │       ├── policies/          # 5 synthetic policy documents
 │       ├── purchase_requisitions/  # 30 synthetic PRs
 │       └── precedents/        # 20 historical decisions
-├── sentinel_x/
+├── prism/
 │   ├── platform/              # LLM provider, vector store, hybrid search
 │   ├── phase1_keyword/        # Keyword detection engine
 │   ├── phase2_llm/            # LLM compliance filter + guardrails
@@ -114,22 +146,22 @@ sentinel-x/
 ├── app/                       # Streamlit demo application
 ├── notebooks/                 # Phase walkthroughs
 └── tests/                     # Unit tests
-
-
----
-
-Key Concepts Demonstrated
-
-The Inversion Pattern — Finding compliant PRs to shrink the review pool
-Hybrid Search — Dense + sparse + RRF fusion for policy retrieval
-Loop Engineering — Self-correcting reasoning chains with confidence bounds
-Critique Agent — Competence boundary detection, not retry logic
-Deterministic Audit — When NOT to use AI is the expert move
-Citation Grounding — No citations = no verdict (hallucination defence)
+```
 
 ---
 
-Synthetic Data
+## Key Concepts Demonstrated
+
+- **The Inversion Pattern** — Finding compliant PRs to shrink the review pool
+- **Hybrid Search** — Dense + sparse + RRF fusion for policy retrieval
+- **Loop Engineering** — Self-correcting reasoning chains with confidence bounds
+- **Critique Agent** — Competence boundary detection, not retry logic
+- **Deterministic Audit** — When NOT to use AI is the expert move
+- **Citation Grounding** — No citations = no verdict (hallucination defence)
+
+---
+
+## Synthetic Data
 
 All data in this repository is fully synthetic.
 No real Cisco data, customer data, or proprietary information is included.
@@ -139,17 +171,17 @@ purpose-built for this demonstration.
 
 ---
 
-Session Details
+## Session Details
 
-Conference: DataHack Summit 2026
-Theme: Human × AI: The Rise of the Agentic Operating Layer
-Format: 1-hour hack session
-Speaker: Jatin Chaudhary, Senior Manager — Cisco Systems
+- **Conference:** DataHack Summit 2026
+- **Theme:** Human × AI: The Rise of the Agentic Operating Layer
+- **Format:** 1-hour hack session
+- **Speaker:** Jatin Chaudhary, Senior Manager — Cisco Systems
 
 
 ---
 
-License
+## License
 
 MIT License — free to use, adapt, and build upon.
 Attribution appreciated.

@@ -1,6 +1,6 @@
 # config/logging_config.py
 """
-Sentinel-X | Structured Logging Configuration
+PRism | Structured Logging Configuration
 Consistent log format across all phases and agents.
 """
 
@@ -22,7 +22,7 @@ def setup_logging(
     log_file: Path | None = None,
 ) -> None:
     """
-    Configure root logger for the entire Sentinel-X package.
+    Configure root logger for the entire PRism package.
     Call once at application entry point.
     """
     numeric_level = getattr(logging, level.upper(), logging.INFO)

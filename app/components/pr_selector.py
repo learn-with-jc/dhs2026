@@ -7,7 +7,7 @@ from pathlib import Path
 
 import streamlit as st
 
-from sentinel_x.platform.data_models import PurchaseRequisition
+from prism.platform.data_models import PurchaseRequisition
 
 
 @st.cache_data

@@ -1,6 +1,6 @@
 # app/pages/01_phase_comparison.py
 """
-Sentinel-X | Page 1 — Phase Comparison
+PRism | Page 1 — Phase Comparison
 
 Runs the same PR through all 4 phases and shows
 outputs side by side. The evolution made visible.
@@ -27,14 +27,14 @@ from app.components.verdict_card import verdict_card
 
 def _get_callbacks() -> list:
     if "sx_callbacks" not in st.session_state:
-        from sentinel_x.platform.observability import setup_tracing
+        from prism.platform.observability import setup_tracing
         st.session_state.sx_callbacks = setup_tracing()
     return st.session_state.sx_callbacks
 
 
 def _get_cache():
     if "sx_cache" not in st.session_state:
-        from sentinel_x.platform.observability import PhaseCache
+        from prism.platform.observability import PhaseCache
         st.session_state.sx_cache = PhaseCache()
     return st.session_state.sx_cache
 
@@ -97,7 +97,7 @@ def _tracing_badge() -> None:
     if ENABLE_LANGSMITH and LANGSMITH_API_KEY and len(LANGSMITH_API_KEY) > 20:
         st.caption(f"🔭 Tracing → LangSmith · project: {LANGSMITH_PROJECT}")
     else:
-        from sentinel_x.platform.observability import DB_PATH
+        from prism.platform.observability import DB_PATH
         st.caption(f"🗄️ Tracing → local SQLite · {DB_PATH.name}")
 
 
@@ -150,12 +150,12 @@ if pr and run_clicked:
     r1_cached = False
     cached1 = cache.get(pr.pr_id, 1, pr_data)
     if cached1:
-        from sentinel_x.platform.data_models import Phase1Result
+        from prism.platform.data_models import Phase1Result
         r1 = Phase1Result.model_validate(cached1)
         r1_cached = True
     else:
         with st.spinner("Phase 1: Keyword detection..."):
-            from sentinel_x.phase1_keyword.keyword_engine import KeywordEngine
+            from prism.phase1_keyword.keyword_engine import KeywordEngine
             r1 = KeywordEngine().evaluate(pr)
         cache.set(pr.pr_id, 1, pr_data, r1.model_dump(mode="json"))
 
@@ -166,13 +166,13 @@ if pr and run_clicked:
     else:
         cached2 = cache.get(pr.pr_id, 2, pr_data)
         if cached2:
-            from sentinel_x.platform.data_models import Phase2Result
+            from prism.platform.data_models import Phase2Result
             r2 = Phase2Result.model_validate(cached2)
             r2_cached = True
         else:
             with st.spinner("Phase 2: LLM compliance filter..."):
                 try:
-                    from sentinel_x.phase2_llm.compliance_filter import ComplianceFilter
+                    from prism.phase2_llm.compliance_filter import ComplianceFilter
                     r2 = ComplianceFilter().evaluate(pr, callbacks=callbacks)
                     if r2.confidence == 0.0 and "LLM unavailable" in r2.llm_reasoning:
                         p2_error = f"LLM call failed: {r2.llm_reasoning}"
@@ -194,24 +194,12 @@ if pr and run_clicked:
         else:
             with st.spinner("Phase 3: Agentic reasoning (8 agents)... this takes ~30s"):
                 try:
-                    from sentinel_x.phase3_agentic.graph.orchestrator import run_pr_through_graph
+                    from prism.phase3_agentic.graph.orchestrator import (
+                        run_pr_through_graph,
+                        normalize_phase3_result,
+                    )
                     r3_raw = run_pr_through_graph(pr.model_dump(), verbose=False, callbacks=callbacks)
-
-                    # Normalise confidence (LLM sometimes returns 0–100 scale)
-                    _conf = r3_raw.get("confidence_score", 0.0) if isinstance(r3_raw, dict) else 0.0
-                    if _conf > 1.0:
-                        _conf /= 100.0
-
-                    r3 = {
-                        "verdict":          r3_raw.get("verdict", "REVIEW_NEEDED") if isinstance(r3_raw, dict) else "REVIEW_NEEDED",
-                        "confidence_score": _conf,
-                        "escalate_to_human": r3_raw.get("escalate_to_human", False) if isinstance(r3_raw, dict) else False,
-                        "recommendation":   r3_raw.get("recommendation", "") if isinstance(r3_raw, dict) else "",
-                        "trace_log":        [
-                            t.model_dump(mode="json") if hasattr(t, "model_dump") else t
-                            for t in (r3_raw.get("trace_log", []) if isinstance(r3_raw, dict) else [])
-                        ],
-                    }
+                    r3 = normalize_phase3_result(r3_raw)
                     cache.set(pr.pr_id, 3, pr_data, r3)
                 except Exception as exc:
                     p3_error = str(exc)
@@ -220,12 +208,12 @@ if pr and run_clicked:
     r4_cached = False
     cached4 = cache.get(pr.pr_id, 4, pr_data)
     if cached4:
-        from sentinel_x.platform.data_models import DecisionRecord
+        from prism.platform.data_models import DecisionRecord
         r4 = DecisionRecord.model_validate(cached4)
         r4_cached = True
     else:
         with st.spinner("Phase 4: Deterministic audit..."):
-            from sentinel_x.phase4_audit.rule_engine    import AuditRuleEngine
+            from prism.phase4_audit.rule_engine    import AuditRuleEngine
             r4 = AuditRuleEngine().evaluate(pr)
         cache.set(pr.pr_id, 4, pr_data, r4.model_dump(mode="json"))
 
