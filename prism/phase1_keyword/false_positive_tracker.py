@@ -22,7 +22,7 @@ from typing import Literal
 
 from prism.platform.data_models import (
     PurchaseRequisition, RiskLabel,
-    Phase1Result, Phase2Result,
+    Phase1Result, Phase2Result, DecisionRecord, VerdictStatus,
 )
 
 logger = logging.getLogger(__name__)
@@ -169,6 +169,29 @@ def compute_phase2_metrics(
     for pr, result in zip(prs, results):
         is_violation = _ground_truth_is_violation(pr)
         was_flagged  = result.final_verdict != RiskLabel.COMPLIANT
+
+        if is_violation and was_flagged:
+            metrics.true_positives  += 1
+        elif not is_violation and was_flagged:
+            metrics.false_positives += 1
+        elif not is_violation and not was_flagged:
+            metrics.true_negatives  += 1
+        else:
+            metrics.false_negatives += 1
+
+    return metrics
+
+
+def compute_phase4_metrics(
+    prs:     list[PurchaseRequisition],
+    results: list[DecisionRecord],
+) -> DetectionMetrics:
+    """Compute detection metrics for Phase 4 deterministic audit output."""
+    metrics = DetectionMetrics(phase="phase4", total_prs=len(prs))
+
+    for pr, result in zip(prs, results):
+        is_violation = _ground_truth_is_violation(pr)
+        was_flagged  = result.status != VerdictStatus.COMPLIANT
 
         if is_violation and was_flagged:
             metrics.true_positives  += 1

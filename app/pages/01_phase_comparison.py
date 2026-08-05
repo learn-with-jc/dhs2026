@@ -250,7 +250,7 @@ if pr and run_clicked:
             guardrails_hit = [g.guardrail_name for g in r2.guardrail_results if g.triggered]
             if guardrails_hit:
                 st.warning(f"⚡ Guardrails: {', '.join(guardrails_hit)}")
-            with st.expander("LLM Reasoning"):
+            with st.expander("LLM Reasoning", expanded=True):
                 st.write(r2.llm_reasoning)
 
     with col3:
@@ -277,8 +277,8 @@ if pr and run_clicked:
                 st.warning("⬆️ Escalated to human review")
             st.caption(f"Agents executed: {len(trace)}")
             if rec:
-                with st.expander("Recommendation"):
-                    st.write(rec[:500])
+                with st.expander("Recommendation", expanded=True):
+                    st.write(rec)
 
     with col4:
         st.markdown("### 📋 Phase 4")

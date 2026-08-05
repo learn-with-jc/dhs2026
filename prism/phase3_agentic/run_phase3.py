@@ -50,7 +50,7 @@ def main() -> None:
 
     cache = PhaseCache()
 
-    for pr in review_prs[:5]:   # limit for demo speed
+    for pr in review_prs:
         print(f"\n{'═'*65}")
         print(f"  Processing: {pr.pr_id} | {pr.vendor}")
         print(f"  Amount: {pr.currency}{pr.total_amount:,.2f}")
