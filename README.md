@@ -94,6 +94,17 @@ python -m prism.phase3_agentic.run_phase3    # needs an LLM provider
 streamlit run app/main.py
 ```
 
+Every phase result is cached in SQLite (`data/processed/prism.db`), keyed to
+the PR's content — re-running any of the commands above (or clicking
+"Run" again in the app) skips PRs it's already evaluated instead of
+re-invoking the LLM. Clear it explicitly (the app's "🗑 Clear Cache"
+buttons, or `PhaseCache.invalidate()`) to force a fresh run.
+
+Phase 3's runner processes every ground-truth `REVIEW_NEEDED`/`NON_COMPLIANT`
+PR in the dataset (currently 16) — on a hosted API that's a couple of
+minutes; on a local Ollama model expect several minutes per PR the first
+time (subsequent runs are instant thanks to the cache above).
+
 ---
 
 ### Running without an API key (Ollama)
@@ -144,6 +155,7 @@ prism/
 │   ├── phase4_audit/          # Deterministic rule engine
 │   └── observability/         # Audit logging and metrics
 ├── app/                       # Streamlit demo application
+├── scripts/                   # One-off tooling (e.g. build_index.py)
 ├── notebooks/                 # Phase walkthroughs
 └── tests/                     # Unit tests
 ```
@@ -158,6 +170,7 @@ prism/
 - **Critique Agent** — Competence boundary detection, not retry logic
 - **Deterministic Audit** — When NOT to use AI is the expert move
 - **Citation Grounding** — No citations = no verdict (hallucination defence)
+- **Content-Hashed Caching** — Re-running a phase skips PRs whose data hasn't changed since the last verdict, instead of re-invoking the LLM
 
 ---
 
