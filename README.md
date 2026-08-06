@@ -14,8 +14,7 @@ PRism is a practitioner's demonstration of how an enterprise AI system
 evolves through four phases — from keyword matching to agentic reasoning —
 solving Purchase Requisition compliance review at scale.
 
-This is not a demo built for a conference.
-It is a real architecture, abstracted and synthesised for sharing.
+It is a practical architecture, abstracted and synthesised for sharing.
 
 ---
 
@@ -31,7 +30,7 @@ It is a real architecture, abstracted and synthesised for sharing.
 ---
 
 ## Architecture
-
+```
 PR Input
 │
 ├── Phase 1: Keyword scan (no LLM)
@@ -46,7 +45,7 @@ PR Input
 │ ├── extract_evidence
 │ └── generate_recommendation
 └── Phase 4: Deterministic audit engine
-
+```
 ---
 
 ## Tech Stack
@@ -116,11 +115,11 @@ no OpenAI or Anthropic key required.
 
 ```bash
 # 1. Install Ollama, then pull the default model
-ollama pull mixtral
+ollama pull mistral
 
 # 2. Point PRism at it in .env
 LLM_PROVIDER=ollama
-OLLAMA_MODEL=mixtral
+OLLAMA_MODEL=mistral
 OLLAMA_BASE_URL=http://localhost:11434
 
 # 3. Run as usual — same commands, same code path
@@ -156,7 +155,6 @@ prism/
 │   └── observability/         # Audit logging and metrics
 ├── app/                       # Streamlit demo application
 ├── scripts/                   # One-off tooling (e.g. build_index.py)
-├── notebooks/                 # Phase walkthroughs
 └── tests/                     # Unit tests
 ```
 
@@ -188,8 +186,8 @@ purpose-built for this demonstration.
 
 - **Conference:** DataHack Summit 2026
 - **Theme:** Human × AI: The Rise of the Agentic Operating Layer
-- **Format:** 1-hour hack session
-- **Speaker:** Jatin Chaudhary, Senior Manager — Cisco Systems
+- **Format:** 50 min Hack Session
+- **Speaker:** Jatin Chaudhary, Senior Manager — Cisco Systems, Adjunct Faculty IIIT-Bangalore
 
 
 ---
