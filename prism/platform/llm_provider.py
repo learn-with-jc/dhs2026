@@ -9,13 +9,6 @@ Supported providers:
   - openai    : GPT-4o (default)
   - anthropic : Claude 3.5 Sonnet
   - ollama    : Mixtral (local)
-
-# ╔══════════════════════════════════════════════════════════════╗
-# ║  SNIPPET: PPT-SLIDE-13 | Phase 2 | Provider Swap Layer      ║
-# ║  STORY:   One line in .env changes the entire model stack    ║
-# ║  OUTPUT:  Same interface, any provider — architecture        ║
-# ║           decision that future-proofs the system             ║
-# ╚══════════════════════════════════════════════════════════════╝
 """
 
 from __future__ import annotations

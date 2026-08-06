@@ -29,13 +29,6 @@ def format_decision_record(record: DecisionRecord) -> str:
     """
     Format a DecisionRecord as human-readable text.
     This is what the compliance analyst reads.
-
-    # ╔══════════════════════════════════════════════════════════════╗
-    # ║  SNIPPET: PPT-SLIDE-25 | Phase 4 | Explainability Output    ║
-    # ║  STORY:   Every decision is a named rule + evidence ref.     ║
-    # ║           An auditor can reproduce this with no AI system.   ║
-    # ║  OUTPUT:  DecisionRecord — the compliance paper trail        ║
-    # ╚══════════════════════════════════════════════════════════════╝
     """
     emoji  = STATUS_EMOJI.get(record.status, "?")
     lines  = [

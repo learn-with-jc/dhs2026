@@ -55,14 +55,6 @@ def build_graph() -> StateGraph:
     """
     Build and compile the PRism LangGraph StateGraph.
     Cached — graph is compiled once and reused.
-
-    # ╔══════════════════════════════════════════════════════════════╗
-    # ║  SNIPPET: PPT-SLIDE-20 | Phase 3 | Graph Assembly           ║
-    # ║  STORY:   Eight agents, one graph, wired by routing logic.   ║
-    # ║           The add_conditional_edges call is where loop       ║
-    # ║           engineering becomes concrete.                      ║
-    # ║  OUTPUT:  The compiled graph — ready to run any PR           ║
-    # ╚══════════════════════════════════════════════════════════════╝
     """
     workflow = StateGraph(PrismState)
 
@@ -111,22 +103,6 @@ def build_graph() -> StateGraph:
     compiled = workflow.compile()
     logger.info("PRism Phase 3 graph compiled successfully")
     return compiled
-
-# SPEAKER NOTE (PPT-SLIDE-20):
-#
-# WHAT TO SAY (not read):
-#   "This is the entire agent graph in about 20 lines.
-#    Linear edges are the happy path. Conditional edges
-#    are where the intelligence is. That add_conditional_edges
-#    call on verdict_gate is what makes this a reasoning system
-#    rather than a pipeline. The graph can loop back, escalate,
-#    or proceed — based on what the agents discovered.
-#    LangGraph handles the state threading, the loop detection,
-#    and the execution. We just define the topology."
-#
-# POINT AT:     workflow.add_conditional_edges("verdict_gate", ...)
-# TRANSITION TO: "Let's run a PR through this graph live..."
-# AVOID SAYING: "As you can see in line 7..."
 
 
 def run_pr_through_graph(

@@ -12,14 +12,6 @@ Design principles:
   - Append-only for logs: trace_log grows, never replaces
   - Confidence is first-class: every agent writes its confidence
   - Escalation is explicit: a boolean flag, not an inference
-
-# ╔══════════════════════════════════════════════════════════════╗
-# ║  SNIPPET: PPT-SLIDE-15 | Phase 3 | State Schema             ║
-# ║  STORY:   Agents don't talk to each other. They talk to      ║
-# ║           shared state. This is the working memory of the    ║
-# ║           entire reasoning pipeline.                         ║
-# ║  OUTPUT:  The TypedDict — every field is a decision          ║
-# ╚══════════════════════════════════════════════════════════════╝
 """
 
 from __future__ import annotations
@@ -87,19 +79,3 @@ def initial_state(pr_data: dict[str, Any]) -> PrismState:
         recommendation     = "",
         trace_log          = [],
     )
-
-# SPEAKER NOTE (PPT-SLIDE-15):
-#
-# WHAT TO SAY (not read):
-#   "This TypedDict is the contract between all eight agents.
-#    None of them call each other. None of them share memory
-#    directly. They all read from this state object and write
-#    their output back to it. The trace_log field at the bottom
-#    is append-only — every agent adds its entry, nobody
-#    overwrites the history. That's how we get a complete
-#    reasoning trace for every PR. Auditability isn't bolted on
-#    — it's in the data structure."
-#
-# POINT AT:     class PrismState(TypedDict): and trace_log
-# TRANSITION TO: "Let's walk through each agent node..."
-# AVOID SAYING: "As you can see in line 7..."
